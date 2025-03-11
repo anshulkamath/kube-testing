@@ -1,0 +1,14 @@
+## Number of replicas for the controller deploymeny
+replicaCount: 1
+
+image:
+  fqn: test-hpc-control
+  tag: latest 
+  pullPolicy: Never
+
+controlPlanePort: 8000
+externalPort: 80
+
+namespace: default
+
+workerService: "worker"

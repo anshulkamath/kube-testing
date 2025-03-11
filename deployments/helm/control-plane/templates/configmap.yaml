@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ .Chart.Name }}-configmap"
+data:
+  port: "{{ .Values.controlPlanePort }}"
+
+  # There HAS to be a better way to do this; how do I dynamically get the
+  # kube-dns of a sister helm chart (and other variables?)
+  computeServiceEndpoint: "http://worker.default.svc.cluster.local:8001"
