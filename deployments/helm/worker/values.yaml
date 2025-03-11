@@ -1,0 +1,11 @@
+## Number of replicas for the controller deploymeny
+replicaCount: 1
+
+image:
+  fqn: test-hpc-worker
+  tag: latest 
+  pullPolicy: Never
+
+workerPort: 8001
+
+namespace: default

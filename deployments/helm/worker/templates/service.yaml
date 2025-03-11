@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "workers.fullname" . }}
+  labels:
+    {{- include "workers.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "workers.selectorLabels" . | nindent 6 }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.workerPort }}
+      targetPort: {{ .Values.workerPort }}
+  type: ClusterIP

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: worker
+description: The workers for this Kubernetes test cluster
+
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
