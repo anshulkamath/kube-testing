@@ -1,0 +1,27 @@
+services:
+  control:
+    build:
+      context: src/control
+    develop:
+      watch:
+        - action: rebuild
+          path: src/control
+          target: /src
+    environment:
+      PORT: "8000"
+      COMPUTE_SERVICE_ENDPOINT: "http://worker:8001/dotProduct"
+    ports:
+      - "8000:8000"
+
+  worker:
+    build:
+      context: src/worker
+    develop:
+      watch:
+        - action: rebuild
+          path: src/worker
+          target: /src
+    environment:
+      PORT: "8001"
+    ports:
+      - "8001:8001"
