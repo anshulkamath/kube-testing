@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: worker
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/anshulkamath/kube-testing.git
+    targetRevision: HEAD
+    path: deployments/helm/worker
+  destination:
+    name: kind
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

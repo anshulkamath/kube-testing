@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://metallb.github.io/metallb
+    targetRevision: "0.13.10"  # Check latest version at https://artifacthub.io/packages/helm/metallb/metallb
+    chart: metallb
+  destination:
+    name: kind
+    namespace: metallb-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  
+  # Use a sync wave to install CRDs later
+  syncWave: "1"
